@@ -7,7 +7,7 @@ class UI {
         this.profile.innerHTML = `
         <div class="card card-body mb-3"> 
         <div class="row"> 
-            <div class="col-md-3> 
+            <div class="col-md-3"> 
                <img class="img-fluid mb-2" src="${user.avatar_url}">
                <a href="${user.html_url} target="_blank" class="btn btn-primary btn-block">View Profile</a>
             </div>
@@ -32,5 +32,40 @@ class UI {
         <div id="repos"></div>
         
         `;
+      }
+      // Show alert message
+      showAlert(message, className) {
+          // Clear any remaining alerts
+          this.clearAlert();
+          // Create div
+          const div = document.createElement('div');
+          // Add classes
+          div.className = className;
+          // Add text
+          div.appendChild(docuent.createTextNode(message));
+          // Get Parent to insert
+          const container = document.querySelector('.searchContainer');
+          // Get search box
+          const search = document.querySelector('.search');
+          // Insert alert
+          container.insertBefore(div, search);
+
+          // Timeout after 3 seconds
+          setTimeout(() => {
+              this.clearAlert();
+          }, 2000);
+      }
+
+      // Clear alert message
+      clearAlert() {
+          const currentAlert = document.querySelector('.alert');
+
+          if (currentAlert) {
+            currentAlert.remove();
+          }
+      }
+
+      clearProfile() {
+          this.profile.innerHTML = '';
       }
 }
